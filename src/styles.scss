@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+
+  ul, ol {
+    list-style: none;
+  }
+  
+
+  input, textarea, button {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+:root {
+    // textos
+
+    --text-color: #FFFFFF; 
+    --text-light-color: #CCCCCC; 
+
+    // fundos e superfícies
+ 
+    --background-color: #333333; /* Cinza escuro */
+    --surface-color: #444444; 
+
+    // bordas
+
+    --border-color: #666666; 
+
+    // avisos
+ 
+    --success-color: #8BC34A; 
+    --warning-color: #FF9800; 
+    --error-color: #F44336; 
+  }
+  
+
