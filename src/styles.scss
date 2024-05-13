@@ -1,51 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap");
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font: inherit;
-    vertical-align: baseline;
-  }
-  
-
-  body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  
-
-  ul, ol {
-    list-style: none;
-  }
-  
-
-  input, textarea, button {
-    font-family: inherit;
-    font-size: inherit;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
 
 :root {
-    // textos
+  // textos
 
-    --text-color: #FFFFFF; 
-    --text-light-color: #CCCCCC; 
+  --text-color: #ffffff;
+  --text-light-color: #cccccc;
 
-    // fundos e superfícies
- 
-    --background-color: #333333; /* Cinza escuro */
-    --surface-color: #444444; 
+  // fundos e superfícies
 
-    // bordas
+  --background-color: #121212; /* Cinza escuro */
+  --surface-color: #444444;
 
-    --border-color: #666666; 
+  // bordas
 
-    // avisos
- 
-    --success-color: #8BC34A; 
-    --warning-color: #FF9800; 
-    --error-color: #F44336; 
-  }
-  
+  --border-color: #666666;
 
+  // avisos
+
+  --success-color: #8bc34a;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+}
+
+body {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cinzel Decorative", serif;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
