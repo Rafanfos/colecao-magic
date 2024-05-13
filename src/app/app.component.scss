@@ -1,7 +1,9 @@
 main {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
+  margin: 0 80px;
 
   .title {
     display: flex;
@@ -22,4 +24,12 @@ main {
   p {
     text-align: center;
   }
+
+  // .content {
+  //   border: 4px solid var(--border-color);
+  //   border-radius: var(--border-radius);
+  //   padding: 40px;
+  //   width: 80%;
+  //   height: 300px;
+  // }
 }

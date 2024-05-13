@@ -1,0 +1,27 @@
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+
+  input,
+  select,
+  button {
+    border: solid 2px;
+    background-color: transparent;
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    padding: 5px;
+  }
+
+  option {
+    background-color: var(--background-color);
+    padding: 5px;
+  }
+
+  button,
+  select {
+    cursor: pointer;
+  }
+}

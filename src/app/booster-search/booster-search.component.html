@@ -1,0 +1,11 @@
+<div class="booster-search-container">
+  <form>
+    <input />
+    <select onclick="this.classList.toggle()">
+      <option *ngFor="let option of boosterOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+    <button>Buscar</button>
+  </form>
+</div>
