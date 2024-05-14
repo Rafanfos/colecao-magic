@@ -1,10 +1,15 @@
 .booster-showcase-container {
   width: 80%;
-  margin: 40px auto;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 30px;
+
+  p {
+    text-align: center;
+    animation: appear 4s forwards;
+  }
 
   ul {
     padding: 20px;
@@ -14,6 +19,7 @@
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
+    animation: appear 6s forwards;
 
     li {
       border: 2px solid var(--border-color);
@@ -22,6 +28,7 @@
       width: 200px;
       height: 150px;
       position: relative;
+      animation: appear 8s fowards;
 
       h3 {
         font-size: 14px;

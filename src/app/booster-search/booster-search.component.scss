@@ -1,5 +1,11 @@
 .booster-search-container {
-  margin-top: 40px;
+  margin-top: 20px;
+  max-width: 100%;
+
+  p {
+    text-align: center;
+    animation: appear 4s forwards;
+  }
 
   form {
     display: flex;
@@ -8,5 +14,13 @@
     gap: 20px;
     padding: 40px;
     margin-top: 80px;
+    flex-wrap: wrap;
+    animation: appear 6s forwards;
+  }
+
+  button:disabled {
+    color: var(--color-disabled);
+    border-color: var(--color-disabled) !important;
+    cursor: not-allowed;
   }
 }

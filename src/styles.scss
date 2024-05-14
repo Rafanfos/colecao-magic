@@ -8,6 +8,7 @@
   outline: 0;
   font: inherit;
   vertical-align: baseline;
+  max-width: 100%;
 }
 
 :root {
@@ -15,6 +16,10 @@
 
   --text-color: #ffffff;
   --text-light-color: #cccccc;
+
+  // disabled
+
+  --color-disabled: #4c4c4c; /* Cinza claro */
 
   // fundos e superfícies
 
@@ -69,14 +74,31 @@ option {
   padding: 5px;
 }
 
-button,
+button:enabled,
 select,
 li {
   cursor: pointer;
 }
 
 li:hover,
-button:hover {
+button:hover,
+input:focus,
+select:focus {
   border-color: var(--border-hover) !important;
   transition: 500ms;
+}
+
+.falling-element-one {
+  position: relative;
+  /* Animação de queda da esquerda */
+}
+
+/* Definição da animação */
+@keyframes appear {
+  0% {
+    opacity: 0; /* Inicia fora da tela na esquerda */
+  }
+  100% {
+    opacity: 1;
+  }
 }

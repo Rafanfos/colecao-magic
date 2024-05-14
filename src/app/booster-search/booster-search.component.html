@@ -4,7 +4,11 @@
     e/ou nome.
   </p>
 
-  <form [formGroup]="boosterSearchForm" (ngSubmit)="submitSearchData()">
+  <form
+    class="falling-text"
+    [formGroup]="boosterSearchForm"
+    (ngSubmit)="submitSearchData()"
+  >
     <input
       formControlName="name"
       type="text"
@@ -18,6 +22,6 @@
         {{ option }}
       </option>
     </select>
-    <button type="submit">Buscar</button>
+    <button type="submit" [disabled]="!boosterSearchForm.valid">Buscar</button>
   </form>
 </div>
