@@ -75,7 +75,8 @@ li {
   cursor: pointer;
 }
 
-li:hover {
+li:hover,
+button:hover {
   border-color: var(--border-hover) !important;
   transition: 500ms;
 }
