@@ -24,6 +24,8 @@
   // bordas
 
   --border-color: #666666;
+  --border-hover: #cca30034;
+  --border-radius: 8px;
 
   // avisos
 
@@ -34,7 +36,6 @@
 
 body {
   font-family: "Cinzel Decorative", serif;
-  font-size: 16px;
   line-height: 1.6;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -52,8 +53,30 @@ ol {
 }
 
 input,
-textarea,
+select,
 button {
   font-family: inherit;
   font-size: inherit;
+  border: solid 2px;
+  background-color: transparent;
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+  padding: 5px;
+}
+
+option {
+  background-color: var(--background-color);
+  padding: 5px;
+}
+
+button,
+select,
+li {
+  cursor: pointer;
+}
+
+li:hover,
+button:hover {
+  border-color: var(--border-hover) !important;
+  transition: 500ms;
 }

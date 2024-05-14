@@ -1,0 +1,23 @@
+<div class="booster-search-container">
+  <p>
+    Utilize o buscador abaixo para explorar os boosters disponíveis, por bloco
+    e/ou nome.
+  </p>
+
+  <form [formGroup]="boosterSearchForm" (ngSubmit)="submitSearchData()">
+    <input
+      formControlName="name"
+      type="text"
+      placeholder="Digite o nome do booster"
+    />
+    <select formControlName="block" placeholder="Selecione um bloco">
+      <option value="" disabled selected id="select-placeholder">
+        Selecione um bloco
+      </option>
+      <option *ngFor="let option of boosterOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+    <button type="submit">Buscar</button>
+  </form>
+</div>
