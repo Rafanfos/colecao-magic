@@ -18,6 +18,6 @@
         {{ option }}
       </option>
     </select>
-    <button type="submit">Buscar</button>
+    <button type="submit" [disabled]="!boosterSearchForm.valid">Buscar</button>
   </form>
 </div>

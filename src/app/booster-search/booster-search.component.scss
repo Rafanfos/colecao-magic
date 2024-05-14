@@ -15,4 +15,10 @@
     margin-top: 80px;
     flex-wrap: wrap;
   }
+
+  button:disabled {
+    color: var(--color-disabled);
+    border-color: var(--color-disabled) !important;
+    cursor: not-allowed;
+  }
 }

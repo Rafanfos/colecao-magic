@@ -17,6 +17,10 @@
   --text-color: #ffffff;
   --text-light-color: #cccccc;
 
+  // disabled
+
+  --color-disabled: #4c4c4c; /* Cinza claro */
+
   // fundos e superfícies
 
   --background-color: #121212; /* Cinza escuro */
@@ -70,14 +74,16 @@ option {
   padding: 5px;
 }
 
-button,
+button:enabled,
 select,
 li {
   cursor: pointer;
 }
 
 li:hover,
-button:hover {
+button:hover,
+input:focus,
+select:focus {
   border-color: var(--border-hover) !important;
   transition: 500ms;
 }
