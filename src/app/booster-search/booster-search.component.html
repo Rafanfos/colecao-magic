@@ -4,7 +4,11 @@
     e/ou nome.
   </p>
 
-  <form [formGroup]="boosterSearchForm" (ngSubmit)="submitSearchData()">
+  <form
+    class="falling-text"
+    [formGroup]="boosterSearchForm"
+    (ngSubmit)="submitSearchData()"
+  >
     <input
       formControlName="name"
       type="text"

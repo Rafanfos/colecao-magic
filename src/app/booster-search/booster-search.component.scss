@@ -4,6 +4,7 @@
 
   p {
     text-align: center;
+    animation: appear 4s forwards;
   }
 
   form {
@@ -14,6 +15,7 @@
     padding: 40px;
     margin-top: 80px;
     flex-wrap: wrap;
+    animation: appear 6s forwards;
   }
 
   button:disabled {

@@ -87,3 +87,18 @@ select:focus {
   border-color: var(--border-hover) !important;
   transition: 500ms;
 }
+
+.falling-element-one {
+  position: relative;
+  /* Animação de queda da esquerda */
+}
+
+/* Definição da animação */
+@keyframes appear {
+  0% {
+    opacity: 0; /* Inicia fora da tela na esquerda */
+  }
+  100% {
+    opacity: 1;
+  }
+}
