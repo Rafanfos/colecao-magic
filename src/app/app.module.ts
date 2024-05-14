@@ -6,9 +6,10 @@ import { BoosterSearchComponent } from './booster-search/booster-search.componen
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BoostersShowcaseComponent } from './boosters-showcase/boosters-showcase.component';
 
 @NgModule({
-  declarations: [AppComponent, BoosterSearchComponent],
+  declarations: [AppComponent, BoosterSearchComponent, BoostersShowcaseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BoosterSearchService } from '../services/boster-search.service';
+import { BoosterService } from '../services/boster.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booster-search',
@@ -11,7 +12,8 @@ import { Subject, takeUntil } from 'rxjs';
 export class BoosterSearchComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
-    private readonly boosterSearchService: BoosterSearchService
+    private readonly boosterService: BoosterService,
+    private router: Router
   ) {}
 
   public boosterOptions = [
@@ -45,9 +47,21 @@ export class BoosterSearchComponent implements OnInit, OnDestroy {
     const queryName = name.value;
     const queryBlock = block.value;
 
-    this.boosterSearchService
+    this.boosterService
       .searchBoosters(queryName, queryBlock)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => console.log(response));
+      .subscribe({
+        next: (response) => {
+          this.boosterService.setBoostersSubject(response.sets);
+          this.openBoostersShowCase();
+        },
+        error: () => {
+          console.log('Erro cao carregar boosters!');
+        },
+      });
+  }
+
+  private openBoostersShowCase(): void {
+    this.router.navigate(['/boosters-showcase']);
   }
 }
