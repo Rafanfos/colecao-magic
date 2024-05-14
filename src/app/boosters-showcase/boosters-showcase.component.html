@@ -1,7 +1,13 @@
-<ul>
-  <li *ngFor="let booster of boostersList">
-    {{ booster.name }}
-  </li>
-
+<div class="booster-showcase-container">
+  <p>Selecione o booster que deseja abrir</p>
+  <ul>
+    <li *ngFor="let booster of boostersList">
+      <h3>{{ booster.name }}</h3>
+      <span>{{ booster.block }}</span>
+      <div class="date-container">
+        <span>{{ booster.releaseDate }}</span>
+      </div>
+    </li>
+  </ul>
   <button (click)="backToBoosterSearch()">Voltar</button>
-</ul>
+</div>

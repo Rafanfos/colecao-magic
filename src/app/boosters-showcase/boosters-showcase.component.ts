@@ -21,7 +21,6 @@ export class BoostersShowcaseComponent implements OnInit {
 
   private getBoostersList(): void {
     this.boosterService.getBoostersSubject().subscribe((boosters: any[]) => {
-      // Se houver boosters, atualize a lista e salve no armazenamento local
       if (boosters && boosters.length > 0) {
         this.boostersList = boosters;
         localStorage.setItem('lastBoosters', JSON.stringify(this.boostersList));
@@ -30,10 +29,22 @@ export class BoostersShowcaseComponent implements OnInit {
           localStorage.getItem('lastBoosters') || '[]'
         );
       }
+
+      this.formmatDate();
     });
   }
 
   public backToBoosterSearch(): void {
     this.router.navigate(['/booster-search']);
+  }
+
+  private formmatDate(): void {
+    this.boostersList.forEach((booster) => {
+      const parts = booster.releaseDate.split('-');
+      const formattedDate = parts.reverse().join('/');
+      booster.releaseDate = formattedDate;
+    });
+
+    console.log(this.boostersList);
   }
 }
