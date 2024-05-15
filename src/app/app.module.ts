@@ -7,9 +7,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BoostersShowcaseComponent } from './boosters-showcase/boosters-showcase.component';
+import { CardsShowcaseComponent } from './cards-showcase/cards-showcase.component';
 
 @NgModule({
-  declarations: [AppComponent, BoosterSearchComponent, BoostersShowcaseComponent],
+  declarations: [AppComponent, BoosterSearchComponent, BoostersShowcaseComponent, CardsShowcaseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
