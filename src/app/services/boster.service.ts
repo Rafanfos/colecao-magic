@@ -42,17 +42,17 @@ export class BoosterService {
     return this.boostersSubject.asObservable();
   }
 
-  public getCards(boosterId: string): Observable<any> {
+  public getCards(boosterId: string): Observable<ICardsSet> {
     return this.http
-      .get(`${this.apiBaseURL}/sets/${boosterId}/booster`)
+      .get<ICardsSet>(`${this.apiBaseURL}/sets/${boosterId}/booster`)
       .pipe(map((response) => response));
   }
 
-  public setCardsSubject(cardsData: any): void {
+  public setCardsSubject(cardsData: ICards[]): void {
     this.cardsSubject.next(cardsData);
   }
 
-  public getCardsSubject(): Observable<any> {
+  public getCardsSubject(): Observable<ICards[]> {
     return this.cardsSubject.asObservable();
   }
 }

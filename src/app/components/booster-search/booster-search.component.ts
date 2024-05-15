@@ -42,7 +42,7 @@ export class BoosterSearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  public submitSearchData() {
+  public submitSearchData(): void {
     const { name, block } = this.boosterSearchForm.controls;
     const queryName = name.value;
     const queryBlock = block.value;

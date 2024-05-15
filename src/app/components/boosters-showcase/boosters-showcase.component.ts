@@ -54,13 +54,13 @@ export class BoostersShowcaseComponent implements OnInit {
     });
   }
 
-  public openBoosters(boosterId: string) {
+  public openBoosters(boosterId: string): void {
     this.boosterService
       .getCards(boosterId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
-          this.boosterService.setBoostersSubject(response.sets);
+          this.boosterService.setCardsSubject(response.cards);
           this.openCardsShowCase();
         },
         error: () => {
