@@ -10,6 +10,7 @@ import { BoostersShowcaseComponent } from './components/boosters-showcase/booste
 import { CardsShowcaseComponent } from './components/cards-showcase/cards-showcase.component';
 import { ManaSymbolToIconPipe } from './pipes/mana-symbol-to-icon/mana-symbol-to-icon.pipe';
 import { ManaSymbolToIconInTextPipe } from './pipes/mana-symbol-to-icon-to-text/mana-symbol-to-icon-in-text.pipe';
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ManaSymbolToIconInTextPipe } from './pipes/mana-symbol-to-icon-to-text/
     CardsShowcaseComponent,
     ManaSymbolToIconPipe,
     ManaSymbolToIconInTextPipe,
+    LoadingScreenComponent,
   ],
   imports: [
     BrowserModule,

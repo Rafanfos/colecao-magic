@@ -20,6 +20,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   public formatedCardsList: ICardsFormated[] = [];
   private readonly destroy$ = new Subject();
   private lastBoosterId: string = '';
+  public loading = true;
 
   ngOnInit(): void {
     this.lastBoosterId = JSON.parse(
@@ -82,6 +83,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
     this.cardsList = this.cardsList.slice(0, 30);
     this.formatManaCost();
     this.formatColorIdentity();
+    this.loading = false;
   }
 
   private formatManaCost(): void {

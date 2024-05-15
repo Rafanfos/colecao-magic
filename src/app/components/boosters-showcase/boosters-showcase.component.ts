@@ -20,6 +20,7 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getBoostersList();
+    localStorage.removeItem('lastCards');
   }
 
   ngOnDestroy(): void {

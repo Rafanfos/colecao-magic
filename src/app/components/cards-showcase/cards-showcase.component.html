@@ -1,4 +1,6 @@
-<div class="cards-showcase-container">
+<app-loading-screen *ngIf="loading"></app-loading-screen>
+
+<div *ngIf="!loading" class="cards-showcase-container">
   <p>Este é seu deck de 30 cartas</p>
   <ul>
     <li *ngFor="let card of formatedCardsList">
