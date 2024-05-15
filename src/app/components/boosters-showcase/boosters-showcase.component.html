@@ -1,4 +1,4 @@
-<div class="booster-showcase-container">
+<div *ngIf="boostersList.length > 0" class="booster-showcase-container">
   <p>Selecione o booster que deseja abrir</p>
   <ul>
     <li *ngFor="let booster of boostersList">
@@ -13,3 +13,8 @@
   </ul>
   <button (click)="backToBoosterSearch()">Voltar</button>
 </div>
+
+<app-error-screen
+  *ngIf="boostersList.length === 0"
+  [currentComponent]="'boosters'"
+></app-error-screen>

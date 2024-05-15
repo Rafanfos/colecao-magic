@@ -19,11 +19,11 @@
 
   // disabled
 
-  --color-disabled: #4c4c4c; /* Cinza claro */
+  --color-disabled: #4c4c4c;
 
   // fundos e superfícies
 
-  --background-color: #121212; /* Cinza escuro */
+  --background-color: #121212;
   --surface-color: #444444;
 
   // bordas
@@ -55,6 +55,10 @@ h3 {
 ul,
 ol {
   list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 input,

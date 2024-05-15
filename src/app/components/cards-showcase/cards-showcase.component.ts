@@ -11,7 +11,7 @@ import { BoosterService } from 'src/app/services/boster.service';
 @Component({
   selector: 'app-cards-showcase',
   templateUrl: './cards-showcase.component.html',
-  styleUrls: ['./cards-showcase.component.scss'], // "styleUrls" em vez de "styleUrl"
+  styleUrls: ['./cards-showcase.component.scss'],
 })
 export class CardsShowcaseComponent implements OnInit, OnDestroy {
   constructor(private readonly boosterService: BoosterService) {}
@@ -23,9 +23,9 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   public loading = true;
 
   ngOnInit(): void {
-    this.lastBoosterId = JSON.parse(
-      localStorage.getItem('lastBoosterId') || ''
-    );
+    if (this.lastBoosterId) {
+      this.lastBoosterId = JSON.parse(this.lastBoosterId);
+    }
     this.getCardsList();
   }
 
@@ -53,22 +53,26 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   }
 
   private getMoreCards(): void {
-    this.boosterService
-      .getCards(this.lastBoosterId)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (response: ICardsSet) => {
-          const creaturesCards = response.cards.filter(({ types }) =>
-            types.includes('Creature')
-          );
-          this.cardsList = [...this.cardsList, ...creaturesCards];
+    if (this.lastBoosterId) {
+      this.boosterService
+        .getCards(this.lastBoosterId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (response: ICardsSet) => {
+            const creaturesCards = response.cards.filter(({ types }) =>
+              types.includes('Creature')
+            );
+            this.cardsList = [...this.cardsList, ...creaturesCards];
 
-          this.verifyDeckCondition();
-        },
-        error: () => {
-          console.log('Erro ao abrir booster!');
-        },
-      });
+            this.verifyDeckCondition();
+          },
+          error: () => {
+            console.log('Erro ao abrir booster!');
+          },
+        });
+    } else {
+      this.loading = false;
+    }
   }
 
   private verifyDeckCondition(): void {
