@@ -16,9 +16,11 @@
             />
           </figure>
         </div>
-        <figure>
-          <img />
-        </figure>
+        <img
+          *ngFor="let color of card.colorIdentity"
+          [src]="color | manaSymbolToIcon"
+          [alt]="color"
+        />
       </div>
     </li>
   </ul>

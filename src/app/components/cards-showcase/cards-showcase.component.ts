@@ -39,6 +39,8 @@ export class CardsShowcaseComponent implements OnInit {
       ...card,
       manaCost: this.splitManaCost(card.manaCost),
     }));
+
+    this.formatColorIdentity();
   }
 
   private splitManaCost(manaCost: string): { qtd: string; mana: string[] } {
@@ -55,5 +57,17 @@ export class CardsShowcaseComponent implements OnInit {
       qtd,
       mana,
     };
+  }
+
+  private formatColorIdentity(): void {
+    this.fommatedCardsList = this.fommatedCardsList.map((card) => ({
+      ...card,
+      colorIdentity: this.convertColorIdentyToEnum(card.colorIdentity),
+    }));
+  }
+
+  private convertColorIdentyToEnum(colorIdentity: string[]): string[] {
+    const newcolorIdentity = colorIdentity.map((color) => `{${color[0]}}`);
+    return colorIdentity.map((color) => `{${color[0]}}`);
   }
 }

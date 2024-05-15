@@ -5,10 +5,10 @@ interface ICardsSet {
 interface IBaseCards {
   code: string;
   name: string;
-  colorIdentity: string;
   text: string;
   imageUrl: string;
   types: string[];
+  colorIdentity: string[];
 }
 
 interface ICardsOriginal extends IBaseCards {
