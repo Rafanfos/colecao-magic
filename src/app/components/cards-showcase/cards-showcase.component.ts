@@ -23,8 +23,9 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   public loading = true;
 
   ngOnInit(): void {
-    if (this.lastBoosterId) {
-      this.lastBoosterId = JSON.parse(this.lastBoosterId);
+    const storedValue = localStorage.getItem('lastBoosterId');
+    if (storedValue) {
+      this.lastBoosterId = JSON.parse(storedValue);
     }
     this.getCardsList();
   }
@@ -63,7 +64,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
               types.includes('Creature')
             );
             this.cardsList = [...this.cardsList, ...creaturesCards];
-
+            console.log(this.cardsList);
             this.verifyDeckCondition();
           },
           error: () => {
