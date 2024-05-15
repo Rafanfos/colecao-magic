@@ -1,26 +1,32 @@
 <div class="cards-showcase-container">
-  <p>Selecione o booster que deseja abrir</p>
+  <p>As seguintes carts foram adquiridas</p>
   <ul>
     <li *ngFor="let card of fommatedCardsList">
       <div class="card-content">
-        <figure>
+        <figure class="card-image">
           <img [src]="card.imageUrl" />
         </figure>
-        <div>
-          <span>{{ card.manaCost.qtd }}</span>
-          <figure>
+        <div class="card-text">
+          <h3>{{ card.name }}</h3>
+          <div class="mana-cost">
+            <span>{{ card.manaCost.qtd }}</span>
             <img
+              class="img-icon"
               *ngFor="let symbol of card.manaCost.mana"
               [src]="symbol | manaSymbolToIcon"
               [alt]="symbol"
             />
-          </figure>
+          </div>
+          <p [innerHTML]="card.text | manaSymbolToIconInText"></p>
         </div>
-        <img
-          *ngFor="let color of card.colorIdentity"
-          [src]="color | manaSymbolToIcon"
-          [alt]="color"
-        />
+        <figure class="card-id-color">
+          <img
+            class="img-icon"
+            *ngFor="let color of card.colorIdentity"
+            [src]="color | manaSymbolToIcon"
+            [alt]="color"
+          />
+        </figure>
       </div>
     </li>
   </ul>

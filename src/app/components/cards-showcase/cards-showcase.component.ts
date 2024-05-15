@@ -67,7 +67,6 @@ export class CardsShowcaseComponent implements OnInit {
   }
 
   private convertColorIdentyToEnum(colorIdentity: string[]): string[] {
-    const newcolorIdentity = colorIdentity.map((color) => `{${color[0]}}`);
     return colorIdentity.map((color) => `{${color[0]}}`);
   }
 }

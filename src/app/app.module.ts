@@ -8,7 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BoostersShowcaseComponent } from './components/boosters-showcase/boosters-showcase.component';
 import { CardsShowcaseComponent } from './components/cards-showcase/cards-showcase.component';
-import { ManaSymbolToIconPipe } from './components/pipes/mana-symbol-to-icon.pipe';
+import { ManaSymbolToIconPipe } from './pipes/mana-symbol-to-icon/mana-symbol-to-icon.pipe';
+import { ManaSymbolToIconInTextPipe } from './pipes/mana-symbol-to-icon-to-text/mana-symbol-to-icon-in-text.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ManaSymbolToIconPipe } from './components/pipes/mana-symbol-to-icon.pip
     BoostersShowcaseComponent,
     CardsShowcaseComponent,
     ManaSymbolToIconPipe,
+    ManaSymbolToIconInTextPipe,
   ],
   imports: [
     BrowserModule,
