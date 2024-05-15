@@ -9,7 +9,7 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IBoosters, IBoostersSets } from '../interfaces/boosters.model';
-import { ICardsSet, ICards } from '../interfaces/cards.model';
+import { ICardsOriginal, ICardsSet } from '../interfaces/cards.model';
 
 @Injectable({
   providedIn: 'root',
@@ -49,11 +49,11 @@ export class BoosterService {
       .pipe(map((response) => response));
   }
 
-  public setCardsSubject(cardsData: ICards[]): void {
+  public setCardsSubject(cardsData: ICardsOriginal[]): void {
     this.cardsSubject.next(cardsData);
   }
 
-  public getCardsSubject(): Observable<ICards[]> {
+  public getCardsSubject(): Observable<ICardsOriginal[]> {
     return this.cardsSubject.asObservable();
   }
 }

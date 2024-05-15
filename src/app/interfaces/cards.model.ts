@@ -1,14 +1,25 @@
 interface ICardsSet {
-  cards: ICards[];
+  cards: ICardsOriginal[];
 }
 
-interface ICards {
-  CODE: string;
+interface IBaseCards {
+  code: string;
   name: string;
-  manaCost: string;
   colorIdentity: string;
   text: string;
   imageUrl: string;
+  types: string[];
 }
 
-export { ICardsSet, ICards };
+interface ICardsOriginal extends IBaseCards {
+  manaCost: string;
+}
+
+interface ICardsFommated extends IBaseCards {
+  manaCost: {
+    qtd: string;
+    mana: string[];
+  };
+}
+
+export { ICardsSet, ICardsOriginal, ICardsFommated };

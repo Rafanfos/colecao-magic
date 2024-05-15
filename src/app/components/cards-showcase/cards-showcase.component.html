@@ -1,6 +1,25 @@
 <div class="cards-showcase-container">
   <p>Selecione o booster que deseja abrir</p>
   <ul>
-    <li *ngFor="let card of cardsList"></li>
+    <li *ngFor="let card of fommatedCardsList">
+      <div class="card-content">
+        <figure>
+          <img [src]="card.imageUrl" />
+        </figure>
+        <div>
+          <span>{{ card.manaCost.qtd }}</span>
+          <figure>
+            <img
+              *ngFor="let symbol of card.manaCost.mana"
+              [src]="symbol | manaSymbolToIcon"
+              [alt]="symbol"
+            />
+          </figure>
+        </div>
+        <figure>
+          <img />
+        </figure>
+      </div>
+    </li>
   </ul>
 </div>

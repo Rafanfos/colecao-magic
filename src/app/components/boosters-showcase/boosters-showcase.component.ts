@@ -60,7 +60,10 @@ export class BoostersShowcaseComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
-          this.boosterService.setCardsSubject(response.cards);
+          const creaturesCards = response.cards.filter(({ types }) =>
+            types.includes('Creature')
+          );
+          this.boosterService.setCardsSubject(creaturesCards);
           this.openCardsShowCase();
         },
         error: () => {
