@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BoosterService } from '../../services/boster.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -9,7 +9,7 @@ import { IBoosters } from '../../interfaces/boosters.model';
   templateUrl: './boosters-showcase.component.html',
   styleUrls: ['./boosters-showcase.component.scss'],
 })
-export class BoostersShowcaseComponent implements OnInit {
+export class BoostersShowcaseComponent implements OnInit, OnDestroy {
   constructor(
     private readonly boosterService: BoosterService,
     private router: Router
@@ -22,9 +22,15 @@ export class BoostersShowcaseComponent implements OnInit {
     this.getBoostersList();
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
+
   private getBoostersList(): void {
     this.boosterService
       .getBoostersSubject()
+      .pipe(takeUntil(this.destroy$))
       .subscribe((boosters: IBoosters[]) => {
         if (boosters && boosters.length > 0) {
           this.boostersList = boosters;
@@ -55,6 +61,8 @@ export class BoostersShowcaseComponent implements OnInit {
   }
 
   public openBoosters(boosterId: string): void {
+    localStorage.setItem('lastBoosterId', JSON.stringify(boosterId));
+
     this.boosterService
       .getCards(boosterId)
       .pipe(takeUntil(this.destroy$))

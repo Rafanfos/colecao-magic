@@ -1,50 +1,94 @@
-import { Component, OnInit } from '@angular/core';
-import { BoosterService } from '../../services/boster.service';
-import { ICardsFommated, ICardsOriginal } from '../../interfaces/cards.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ICardsFormated,
+  ICardsOriginal,
+  ICardsSet,
+} from '../../interfaces/cards.model';
+
+import { Subject, takeUntil } from 'rxjs';
+import { BoosterService } from 'src/app/services/boster.service';
 
 @Component({
   selector: 'app-cards-showcase',
   templateUrl: './cards-showcase.component.html',
-  styleUrl: './cards-showcase.component.scss',
+  styleUrls: ['./cards-showcase.component.scss'], // "styleUrls" em vez de "styleUrl"
 })
-export class CardsShowcaseComponent implements OnInit {
+export class CardsShowcaseComponent implements OnInit, OnDestroy {
   constructor(private readonly boosterService: BoosterService) {}
 
   public cardsList: ICardsOriginal[] = [];
-  public fommatedCardsList: ICardsFommated[] = [];
+  public formatedCardsList: ICardsFormated[] = [];
+  private readonly destroy$ = new Subject();
+  private lastBoosterId: string = '';
 
   ngOnInit(): void {
+    this.lastBoosterId = JSON.parse(
+      localStorage.getItem('lastBoosterId') || ''
+    );
     this.getCardsList();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
   }
 
   private getCardsList(): void {
     this.boosterService
       .getCardsSubject()
+      .pipe(takeUntil(this.destroy$))
       .subscribe((cards: ICardsOriginal[]) => {
         if (cards && cards.length > 0) {
           this.cardsList = [...this.cardsList, ...cards];
           localStorage.setItem('lastCards', JSON.stringify(this.cardsList));
-
-          if (this.cardsList.length < 30) {
-            this.getCardsList();
-          } else {
-            this.formatManaCost();
-          }
         } else {
           this.cardsList = JSON.parse(
             localStorage.getItem('lastCards') || '[]'
           );
         }
+
+        this.verifyDeckCondition();
       });
   }
 
+  private getMoreCards(): void {
+    this.boosterService
+      .getCards(this.lastBoosterId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response: ICardsSet) => {
+          const creaturesCards = response.cards.filter(({ types }) =>
+            types.includes('Creature')
+          );
+          this.cardsList = [...this.cardsList, ...creaturesCards];
+
+          this.verifyDeckCondition();
+        },
+        error: () => {
+          console.log('Erro ao abrir booster!');
+        },
+      });
+  }
+
+  private verifyDeckCondition(): void {
+    if (this.cardsList.length < 30) {
+      this.getMoreCards();
+    } else {
+      this.formatCards();
+    }
+  }
+
+  private formatCards(): void {
+    this.cardsList = this.cardsList.slice(0, 30);
+    this.formatManaCost();
+    this.formatColorIdentity();
+  }
+
   private formatManaCost(): void {
-    this.fommatedCardsList = this.cardsList.map((card) => ({
+    this.formatedCardsList = this.cardsList.map((card) => ({
       ...card,
       manaCost: this.splitManaCost(card.manaCost),
     }));
-
-    this.formatColorIdentity();
   }
 
   private splitManaCost(manaCost: string): { qtd: string; mana: string[] } {
@@ -54,7 +98,6 @@ export class CardsShowcaseComponent implements OnInit {
     }
 
     const regex = /{[^}]+}/g;
-
     const mana = manaCost.substring(qtd ? 3 : 0).match(regex) as string[];
 
     return {
@@ -64,13 +107,17 @@ export class CardsShowcaseComponent implements OnInit {
   }
 
   private formatColorIdentity(): void {
-    this.fommatedCardsList = this.fommatedCardsList.map((card) => ({
+    this.formatedCardsList = this.formatedCardsList.map((card) => ({
       ...card,
-      colorIdentity: this.convertColorIdentyToEnum(card.colorIdentity),
+      colorIdentity:
+        this.convertColorIdentityToEnum(card.colorIdentity) ||
+        card.colorIdentity,
     }));
   }
 
-  private convertColorIdentyToEnum(colorIdentity: string[]): string[] {
-    return colorIdentity.map((color) => `{${color[0]}}`);
+  private convertColorIdentityToEnum(colorIdentity: string[]): string[] | void {
+    if (colorIdentity) {
+      return colorIdentity.map((color) => `{${color[0]}}`);
+    }
   }
 }

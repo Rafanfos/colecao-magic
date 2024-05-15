@@ -28,6 +28,7 @@ export class BoosterSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.buildBoosterSearchForm();
+    localStorage.clear();
   }
 
   ngOnDestroy(): void {

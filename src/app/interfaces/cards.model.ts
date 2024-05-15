@@ -15,11 +15,11 @@ interface ICardsOriginal extends IBaseCards {
   manaCost: string;
 }
 
-interface ICardsFommated extends IBaseCards {
+interface ICardsFormated extends IBaseCards {
   manaCost: {
     qtd: string;
     mana: string[];
   };
 }
 
-export { ICardsSet, ICardsOriginal, ICardsFommated };
+export { ICardsSet, ICardsOriginal, ICardsFormated };
