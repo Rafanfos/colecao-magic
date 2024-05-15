@@ -64,6 +64,8 @@ export class CardsShowcaseComponent implements OnInit {
       ...card,
       colorIdentity: this.convertColorIdentyToEnum(card.colorIdentity),
     }));
+
+    console.log(this.fommatedCardsList);
   }
 
   private convertColorIdentyToEnum(colorIdentity: string[]): string[] {
