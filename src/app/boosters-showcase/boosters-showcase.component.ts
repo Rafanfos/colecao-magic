@@ -44,7 +44,5 @@ export class BoostersShowcaseComponent implements OnInit {
       const formattedDate = parts.reverse().join('/');
       booster.releaseDate = formattedDate;
     });
-
-    console.log(this.boostersList);
   }
 }

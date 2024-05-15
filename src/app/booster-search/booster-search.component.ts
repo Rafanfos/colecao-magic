@@ -56,7 +56,7 @@ export class BoosterSearchComponent implements OnInit, OnDestroy {
           this.openBoostersShowCase();
         },
         error: () => {
-          console.log('Erro cao carregar boosters!');
+          console.log('Erro ao carregar boosters!');
         },
       });
   }

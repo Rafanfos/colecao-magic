@@ -88,15 +88,9 @@ select:focus {
   transition: 500ms;
 }
 
-.falling-element-one {
-  position: relative;
-  /* Animação de queda da esquerda */
-}
-
-/* Definição da animação */
 @keyframes appear {
   0% {
-    opacity: 0; /* Inicia fora da tela na esquerda */
+    opacity: 0;
   }
   100% {
     opacity: 1;
