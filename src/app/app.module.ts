@@ -2,15 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BoosterSearchComponent } from './booster-search/booster-search.component';
+import { BoosterSearchComponent } from './components/booster-search/booster-search.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BoostersShowcaseComponent } from './boosters-showcase/boosters-showcase.component';
-import { CardsShowcaseComponent } from './cards-showcase/cards-showcase.component';
+import { BoostersShowcaseComponent } from './components/boosters-showcase/boosters-showcase.component';
+import { CardsShowcaseComponent } from './components/cards-showcase/cards-showcase.component';
 
 @NgModule({
-  declarations: [AppComponent, BoosterSearchComponent, BoostersShowcaseComponent, CardsShowcaseComponent],
+  declarations: [
+    AppComponent,
+    BoosterSearchComponent,
+    BoostersShowcaseComponent,
+    CardsShowcaseComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

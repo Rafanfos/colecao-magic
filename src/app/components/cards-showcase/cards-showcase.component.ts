@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BoosterService } from '../services/boster.service';
+import { BoosterService } from '../../services/boster.service';
 
 @Component({
   selector: 'app-cards-showcase',

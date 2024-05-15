@@ -8,6 +8,7 @@ import {
   throwError,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IBoosters, IBoostersSets } from '../interfaces/boosters.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,28 +17,28 @@ export class BoosterService {
   constructor(private http: HttpClient) {}
 
   private apiBaseURL = `https://api.magicthegathering.io/v1`;
-  private boostersSubject = new BehaviorSubject<any>(null);
+  private boostersSubject = new BehaviorSubject<IBoosters[]>([]);
   private cardsSubject = new BehaviorSubject<any>(null);
 
   public searchBoosters(
     queryName: string,
     queryBlock: string
-  ): Observable<any> {
+  ): Observable<IBoostersSets> {
     let queryParams = new HttpParams().set('block', queryBlock);
     if (queryName) {
       queryParams = queryParams.set('name', queryName);
     }
 
     return this.http
-      .get(`${this.apiBaseURL}/sets`, { params: queryParams })
+      .get<IBoostersSets>(`${this.apiBaseURL}/sets`, { params: queryParams })
       .pipe(map((response) => response));
   }
 
-  public setBoostersSubject(boostersData: any): void {
+  public setBoostersSubject(boostersData: IBoosters[]): void {
     this.boostersSubject.next(boostersData);
   }
 
-  public getBoostersSubject(): Observable<any> {
+  public getBoostersSubject(): Observable<IBoosters[]> {
     return this.boostersSubject.asObservable();
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BoosterService } from '../services/boster.service';
+import { BoosterService } from '../../services/boster.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 

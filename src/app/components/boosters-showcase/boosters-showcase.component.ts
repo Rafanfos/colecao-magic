@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BoosterService } from '../services/boster.service';
+import { BoosterService } from '../../services/boster.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { IBoosters } from '../../interfaces/boosters.model';
 
 @Component({
   selector: 'app-boosters-showcase',
@@ -14,7 +15,7 @@ export class BoostersShowcaseComponent implements OnInit {
     private router: Router
   ) {}
 
-  public boostersList: any[] = [];
+  public boostersList: IBoosters[] = [];
   private readonly destroy$ = new Subject();
 
   ngOnInit(): void {
@@ -22,18 +23,23 @@ export class BoostersShowcaseComponent implements OnInit {
   }
 
   private getBoostersList(): void {
-    this.boosterService.getBoostersSubject().subscribe((boosters: any[]) => {
-      if (boosters && boosters.length > 0) {
-        this.boostersList = boosters;
-        localStorage.setItem('lastBoosters', JSON.stringify(this.boostersList));
-      } else {
-        this.boostersList = JSON.parse(
-          localStorage.getItem('lastBoosters') || '[]'
-        );
-      }
+    this.boosterService
+      .getBoostersSubject()
+      .subscribe((boosters: IBoosters[]) => {
+        if (boosters && boosters.length > 0) {
+          this.boostersList = boosters;
+          localStorage.setItem(
+            'lastBoosters',
+            JSON.stringify(this.boostersList)
+          );
+        } else {
+          this.boostersList = JSON.parse(
+            localStorage.getItem('lastBoosters') || '[]'
+          );
+        }
 
-      this.formmatDate();
-    });
+        this.formmatDate();
+      });
   }
 
   public backToBoosterSearch(): void {
