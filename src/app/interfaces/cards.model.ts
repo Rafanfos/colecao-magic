@@ -3,12 +3,13 @@ interface ICardsSet {
 }
 
 interface IBaseCards {
-  code: string;
+  id: string;
   name: string;
   text: string;
   imageUrl: string;
   types: string[];
   colorIdentity: string[];
+  isSelected: boolean;
 }
 
 interface ICardsOriginal extends IBaseCards {
@@ -20,6 +21,8 @@ interface ICardsFormated extends IBaseCards {
     qtd: string;
     mana: string[];
   };
+
+  isSelected: boolean;
 }
 
 export { ICardsSet, ICardsOriginal, ICardsFormated };

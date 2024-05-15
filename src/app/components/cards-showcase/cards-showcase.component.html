@@ -3,7 +3,11 @@
 <div *ngIf="!loading && cardsList.length > 0" class="cards-showcase-container">
   <p>Este é seu deck de 30 cartas</p>
   <ul>
-    <li *ngFor="let card of formatedCardsList">
+    <li
+      *ngFor="let card of formatedCardsList; let i = index"
+      [ngClass]="{ 'selected-card': card.isSelected }"
+      (click)="selectCard(card.id, i)"
+    >
       <div class="card-content">
         <figure class="card-image">
           <img [src]="card.imageUrl" />
@@ -32,6 +36,8 @@
       </div>
     </li>
   </ul>
+
+  <button (click)="rerollCards()">Rerrolar</button>
 </div>
 
 <app-error-screen

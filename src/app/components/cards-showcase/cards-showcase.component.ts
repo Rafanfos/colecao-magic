@@ -21,6 +21,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject();
   private lastBoosterId: string = '';
   public loading = true;
+  public selectedCards: ICardsFormated[] = [];
 
   ngOnInit(): void {
     const storedValue = localStorage.getItem('lastBoosterId');
@@ -53,7 +54,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
       });
   }
 
-  private getMoreCards(): void {
+  public getMoreCards(): void {
     if (this.lastBoosterId) {
       this.boosterService
         .getCards(this.lastBoosterId)
@@ -64,7 +65,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
               types.includes('Creature')
             );
             this.cardsList = [...this.cardsList, ...creaturesCards];
-            console.log(this.cardsList);
+
             this.verifyDeckCondition();
           },
           error: () => {
@@ -89,6 +90,13 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
     this.formatManaCost();
     this.formatColorIdentity();
     this.loading = false;
+  }
+
+  private unselectAllCards(): void {
+    this.cardsList = this.cardsList.map((card) => ({
+      ...card,
+      isSelected: false,
+    }));
   }
 
   private formatManaCost(): void {
@@ -126,5 +134,33 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
     if (colorIdentity) {
       return colorIdentity.map((color) => `{${color[0]}}`);
     }
+  }
+
+  public selectCard(id: string, index: number): void {
+    const repeatedIndex = this.selectedCards.findIndex(
+      (selectedCard) => selectedCard.id === id
+    );
+
+    if (repeatedIndex === -1) {
+      if (this.selectedCards.length < 5) {
+        this.formatedCardsList[index].isSelected = true;
+        this.cardsList[index].isSelected = true;
+        this.selectedCards.push(this.formatedCardsList[index]);
+      } else {
+        console.log('Você já selecionou o máximo de 5 cartas.');
+      }
+    } else {
+      this.selectedCards.splice(repeatedIndex, 1);
+      this.formatedCardsList[index].isSelected = false;
+      this.cardsList[index].isSelected = false;
+    }
+  }
+
+  public rerollCards(): void {
+    this.loading = true;
+
+    this.cardsList = this.cardsList.filter((card) => !card.isSelected);
+
+    this.getMoreCards();
   }
 }

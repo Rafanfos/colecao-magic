@@ -78,5 +78,16 @@
         }
       }
     }
+
+    .selected-card {
+      border-color: var(--border-hover) !important;
+      transition: 500ms;
+    }
+  }
+
+  button {
+    animation-name: appear; /* Nome da animação */
+    animation-duration: 10s; /* Duração da animação */
+    animation-fill-mode: forwards;
   }
 }
