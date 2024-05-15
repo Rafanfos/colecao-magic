@@ -53,4 +53,10 @@
       }
     }
   }
+
+  button {
+    animation-name: appear; /* Nome da animação */
+    animation-duration: 10s; /* Duração da animação */
+    animation-fill-mode: forwards;
+  }
 }
