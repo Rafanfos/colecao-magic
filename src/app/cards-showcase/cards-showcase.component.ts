@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BoosterService } from '../services/boster.service';
 
 @Component({
   selector: 'app-cards-showcase',
   templateUrl: './cards-showcase.component.html',
   styleUrl: './cards-showcase.component.scss',
 })
-export class CardsShowcaseComponent {
+export class CardsShowcaseComponent implements OnInit {
+  constructor(private readonly boosterService: BoosterService) {}
+
   public cardsList: any[] = [];
+
+  ngOnInit(): void {
+    this.getCardsList();
+  }
+
+  private getCardsList(): void {
+    this.boosterService.getCardsSubject().subscribe((cards: any[]) => {
+      if (cards && cards.length > 0) {
+        this.cardsList = cards;
+        localStorage.setItem('lastCards', JSON.stringify(this.cardsList));
+      } else {
+        this.cardsList = JSON.parse(localStorage.getItem('lastCards') || '[]');
+      }
+    });
+  }
 }

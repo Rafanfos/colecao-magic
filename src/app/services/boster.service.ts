@@ -7,7 +7,7 @@ import {
   Subject,
   throwError,
 } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +15,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class BoosterService {
   constructor(private http: HttpClient) {}
 
-  private apiURL = `https://api.magicthegathering.io/v1/sets`;
+  private apiBaseURL = `https://api.magicthegathering.io/v1`;
   private boostersSubject = new BehaviorSubject<any>(null);
-  private errorSubject = new Subject<string>();
-
-  public getErrorSubject(): Observable<string> {
-    return this.errorSubject.asObservable();
-  }
+  private cardsSubject = new BehaviorSubject<any>(null);
 
   public searchBoosters(
     queryName: string,
@@ -33,7 +29,7 @@ export class BoosterService {
     }
 
     return this.http
-      .get(this.apiURL, { params: queryParams })
+      .get(`${this.apiBaseURL}/sets`, { params: queryParams })
       .pipe(map((response) => response));
   }
 
@@ -43,5 +39,19 @@ export class BoosterService {
 
   public getBoostersSubject(): Observable<any> {
     return this.boostersSubject.asObservable();
+  }
+
+  public getCards(boosterId: string): Observable<any> {
+    return this.http
+      .get(`${this.apiBaseURL}/sets/${boosterId}/booster`)
+      .pipe(map((response) => response));
+  }
+
+  public setCardsSubject(cardsData: any): void {
+    this.cardsSubject.next(cardsData);
+  }
+
+  public getCardsSubject(): Observable<any> {
+    return this.cardsSubject.asObservable();
   }
 }

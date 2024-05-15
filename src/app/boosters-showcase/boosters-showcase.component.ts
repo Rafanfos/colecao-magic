@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BoosterService } from '../services/boster.service';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-boosters-showcase',
@@ -14,6 +15,7 @@ export class BoostersShowcaseComponent implements OnInit {
   ) {}
 
   public boostersList: any[] = [];
+  private readonly destroy$ = new Subject();
 
   ngOnInit(): void {
     this.getBoostersList();
@@ -44,5 +46,24 @@ export class BoostersShowcaseComponent implements OnInit {
       const formattedDate = parts.reverse().join('/');
       booster.releaseDate = formattedDate;
     });
+  }
+
+  public openBoosters(boosterId: string) {
+    this.boosterService
+      .getCards(boosterId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.boosterService.setBoostersSubject(response.sets);
+          this.openCardsShowCase();
+        },
+        error: () => {
+          console.log('Erro ao abrir booster!');
+        },
+      });
+  }
+
+  private openCardsShowCase(): void {
+    this.router.navigate(['/cards-showcase']);
   }
 }
