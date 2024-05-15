@@ -1,0 +1,43 @@
+.cards-showcase-container {
+  width: 100%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  p {
+    text-align: center;
+    animation: appear 4s forwards;
+  }
+
+  ul {
+    padding: 20px;
+    border: 4px solid var(--border-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    animation: appear 6s forwards;
+    width: 80%;
+
+    li {
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      padding: 5px;
+      width: 200px;
+      height: 150px;
+      position: relative;
+      animation: appear 8s fowards;
+
+      h3 {
+        font-size: 14px;
+      }
+
+      span {
+        font-size: 10px;
+      }
+    }
+  }
+}
