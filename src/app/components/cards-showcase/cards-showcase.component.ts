@@ -22,19 +22,23 @@ export class CardsShowcaseComponent implements OnInit {
       .getCardsSubject()
       .subscribe((cards: ICardsOriginal[]) => {
         if (cards && cards.length > 0) {
-          this.cardsList = cards;
+          this.cardsList = [...this.cardsList, ...cards];
           localStorage.setItem('lastCards', JSON.stringify(this.cardsList));
+
+          if (this.cardsList.length < 30) {
+            this.getCardsList();
+          } else {
+            this.formatManaCost();
+          }
         } else {
           this.cardsList = JSON.parse(
             localStorage.getItem('lastCards') || '[]'
           );
         }
-
-        this.fommatManaCost();
       });
   }
 
-  private fommatManaCost(): void {
+  private formatManaCost(): void {
     this.fommatedCardsList = this.cardsList.map((card) => ({
       ...card,
       manaCost: this.splitManaCost(card.manaCost),
@@ -64,8 +68,6 @@ export class CardsShowcaseComponent implements OnInit {
       ...card,
       colorIdentity: this.convertColorIdentyToEnum(card.colorIdentity),
     }));
-
-    console.log(this.fommatedCardsList);
   }
 
   private convertColorIdentyToEnum(colorIdentity: string[]): string[] {
