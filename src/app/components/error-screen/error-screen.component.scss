@@ -1,0 +1,11 @@
+.no-cards-container {
+  margin-top: 20px;
+  animation: 4s appear forwards;
+
+  p {
+    text-align: center;
+  }
+  a {
+    color: var(--success-color);
+  }
+}

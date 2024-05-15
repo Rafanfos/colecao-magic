@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BoosterService } from '../services/boster.service';
+import { BoosterService } from '../../services/boster.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -28,6 +28,7 @@ export class BoosterSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.buildBoosterSearchForm();
+    localStorage.clear();
   }
 
   ngOnDestroy(): void {
@@ -42,7 +43,7 @@ export class BoosterSearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  public submitSearchData() {
+  public submitSearchData(): void {
     const { name, block } = this.boosterSearchForm.controls;
     const queryName = name.value;
     const queryBlock = block.value;
@@ -56,7 +57,7 @@ export class BoosterSearchComponent implements OnInit, OnDestroy {
           this.openBoostersShowCase();
         },
         error: () => {
-          console.log('Erro cao carregar boosters!');
+          console.log('Erro ao carregar boosters!');
         },
       });
   }

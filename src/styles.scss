@@ -19,11 +19,11 @@
 
   // disabled
 
-  --color-disabled: #4c4c4c; /* Cinza claro */
+  --color-disabled: #4c4c4c;
 
   // fundos e superfícies
 
-  --background-color: #121212; /* Cinza escuro */
+  --background-color: #121212;
   --surface-color: #444444;
 
   // bordas
@@ -57,6 +57,10 @@ ol {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 input,
 select,
 button {
@@ -88,17 +92,16 @@ select:focus {
   transition: 500ms;
 }
 
-.falling-element-one {
-  position: relative;
-  /* Animação de queda da esquerda */
-}
-
-/* Definição da animação */
 @keyframes appear {
   0% {
-    opacity: 0; /* Inicia fora da tela na esquerda */
+    opacity: 0;
   }
   100% {
     opacity: 1;
   }
+}
+
+.img-icon {
+  width: 10px;
+  padding: 1px;
 }
