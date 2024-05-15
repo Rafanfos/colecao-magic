@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoosterService } from '../../services/boster.service';
+import { ICards } from '../../interfaces/cards.model';
 
 @Component({
   selector: 'app-cards-showcase',

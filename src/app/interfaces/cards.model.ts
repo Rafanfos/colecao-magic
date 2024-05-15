@@ -10,3 +10,5 @@ interface ICards {
   text: string;
   imageUrl: string;
 }
+
+export { ICardsSet, ICards };

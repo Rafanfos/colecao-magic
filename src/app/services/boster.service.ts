@@ -9,6 +9,7 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IBoosters, IBoostersSets } from '../interfaces/boosters.model';
+import { ICardsSet, ICards } from '../interfaces/cards.model';
 
 @Injectable({
   providedIn: 'root',
