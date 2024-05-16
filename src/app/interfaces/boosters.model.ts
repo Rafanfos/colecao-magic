@@ -7,6 +7,7 @@ interface IBoosters {
   name: string;
   block: string;
   releaseDate: string;
+  page: number;
 }
 
 export { IBoostersSets, IBoosters };

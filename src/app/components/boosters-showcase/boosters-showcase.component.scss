@@ -11,46 +11,53 @@
     animation: appear 4s forwards;
   }
 
-  ul {
+  .content-block {
     padding: 20px;
     border: 4px solid var(--border-color);
     border-radius: var(--border-radius);
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     animation: appear 6s forwards;
     width: 80%;
 
-    li {
-      border: 2px solid var(--border-color);
-      border-radius: 8px;
-      padding: 5px;
-      width: 200px;
-      height: 150px;
-      position: relative;
-      animation: appear 8s fowards;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
 
-      h3 {
-        font-size: 14px;
-      }
-
-      span {
-        font-size: 10px;
-      }
-
-      .date-container {
-        padding: 5px;
+      li {
         border: 2px solid var(--border-color);
         border-radius: 8px;
-        width: fit-content;
-        height: fit-content;
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 5px;
+        width: 200px;
+        height: 150px;
+        position: relative;
+        animation: appear 8s fowards;
+
+        h3 {
+          font-size: 14px;
+        }
+
+        span {
+          font-size: 10px;
+        }
+
+        .date-container {
+          padding: 5px;
+          border: 2px solid var(--border-color);
+          border-radius: 8px;
+          width: fit-content;
+          height: fit-content;
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }

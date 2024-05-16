@@ -43,7 +43,7 @@
     </ul>
     <app-pagination
       *ngIf="!loading"
-      [itemsPerPage]="4"
+      [itemsPerPage]="itemsPerPage"
       [totalItems]="formatedCardsList.length"
       (pageChanges)="handleUpdatePagination($event)"
     ></app-pagination>

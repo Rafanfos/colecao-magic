@@ -19,6 +19,7 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject();
   public showNotification = false;
   public notificationMessage = '';
+  public itemsPerPage = 6;
 
   ngOnInit(): void {
     this.getBoostersList();
@@ -56,10 +57,11 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
   }
 
   private formmatDate(): void {
-    this.boostersList.forEach((booster) => {
+    this.boostersList.forEach((booster, index) => {
       const parts = booster.releaseDate.split('-');
       const formattedDate = parts.reverse().join('/');
       booster.releaseDate = formattedDate;
+      booster.page = Math.ceil((index + 1) / this.itemsPerPage);
     });
   }
 
@@ -87,5 +89,11 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
 
   private openCardsShowCase(): void {
     this.router.navigate(['/cards-showcase']);
+  }
+
+  public handleUpdatePagination(pageChanged: number): void {
+    this.boostersList = this.boostersList.filter(
+      ({ page }) => page === pageChanged
+    );
   }
 }
