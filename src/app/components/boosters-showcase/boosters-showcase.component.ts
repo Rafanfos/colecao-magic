@@ -77,7 +77,8 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
           this.boosterService.setCardsSubject(creaturesCards);
           this.openCardsShowCase();
         },
-        error: () => {
+        error: (error) => {
+          console.log('cadê o erro');
           this.showNotification = true;
           this.notificationMessage = 'Erro ao abrir boosters!';
         },

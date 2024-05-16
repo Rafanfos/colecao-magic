@@ -17,6 +17,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
 
   public cardsList: ICardsOriginal[] = [];
   public formatedCardsList: ICardsFormated[] = [];
+  public formatedCardsPagedList: ICardsFormated[] = [];
   private readonly destroy$ = new Subject();
   private lastBoosterId: string = '';
   public loading = true;
@@ -96,6 +97,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
     this.unselectAllCards();
     this.formatManaCost();
     this.formatColorIdentity();
+    this.handleUpdatePagination(1);
     this.loading = false;
   }
 
@@ -107,9 +109,10 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   }
 
   private formatManaCost(): void {
-    this.formatedCardsList = this.cardsList.map((card) => ({
+    this.formatedCardsList = this.cardsList.map((card, index) => ({
       ...card,
       manaCost: this.splitManaCost(card.manaCost),
+      page: Math.ceil((index + 1) / 3),
     }));
   }
 
@@ -166,9 +169,15 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
 
   public rerollCards(): void {
     this.loading = true;
-
     this.cardsList = this.cardsList.filter((card) => !card.isSelected);
 
     this.getMoreCards();
+  }
+
+  public handleUpdatePagination(pageChanged: number): void {
+    console.log(this.formatedCardsPagedList);
+    this.formatedCardsPagedList = this.formatedCardsList.filter(
+      ({ page }) => page === pageChanged
+    );
   }
 }
