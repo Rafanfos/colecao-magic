@@ -4,12 +4,14 @@
   <p>Este é seu deck de 30 cartas</p>
 
   <div class="content-block">
-    <p>Você pode rerrolar até 5 cartas as selecionando clicando em rerrolar</p>
+    <p>
+      Você pode rerrolar até 5 cartas as selecionando e clicando em rerrolar
+    </p>
     <ul>
       <li
         *ngFor="let card of formatedCardsPagedList; let i = index"
         [ngClass]="{ 'selected-card': card.isSelected }"
-        (click)="selectCard(card.id, i)"
+        (click)="selectCard(card.id, card)"
       >
         <div class="card-content">
           <figure class="card-image">
@@ -41,7 +43,7 @@
     </ul>
     <app-pagination
       *ngIf="!loading"
-      [itemsPerPage]="3"
+      [itemsPerPage]="4"
       [totalItems]="formatedCardsList.length"
       (pageChanges)="handleUpdatePagination($event)"
     ></app-pagination>

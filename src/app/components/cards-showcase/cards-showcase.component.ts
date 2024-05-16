@@ -21,9 +21,11 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject();
   private lastBoosterId: string = '';
   public loading = true;
-  public selectedCards: ICardsFormated[] = [];
+  public selectedCards: ICardsOriginal[] = [];
   public showNotification = false;
   public notificationMessage = '';
+  private currentPage = 0;
+  public itemsPerPage = 4;
 
   closeNotification(): void {
     this.showNotification = false;
@@ -112,7 +114,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
     this.formatedCardsList = this.cardsList.map((card, index) => ({
       ...card,
       manaCost: this.splitManaCost(card.manaCost),
-      page: Math.ceil((index + 1) / 3),
+      page: Math.ceil((index + 1) / this.itemsPerPage),
     }));
   }
 
@@ -146,25 +148,35 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
     }
   }
 
-  public selectCard(id: string, index: number): void {
+  public selectCard(id: string, card: ICardsFormated): void {
     const repeatedIndex = this.selectedCards.findIndex(
+      (selectedCard) => selectedCard.id === id
+    );
+
+    const selectedIndex = this.formatedCardsList.findIndex(
+      (selectedCard) => selectedCard.id === id
+    );
+
+    const selectedPagedIndex = this.formatedCardsPagedList.findIndex(
       (selectedCard) => selectedCard.id === id
     );
 
     if (repeatedIndex === -1) {
       if (this.selectedCards.length < 5) {
-        this.formatedCardsList[index].isSelected = true;
-        this.cardsList[index].isSelected = true;
-        this.selectedCards.push(this.formatedCardsList[index]);
+        this.formatedCardsPagedList[selectedPagedIndex].isSelected = true;
+        this.cardsList[selectedIndex].isSelected = true;
+        this.selectedCards.push(this.cardsList[selectedIndex]);
       } else {
         this.showNotification = true;
         this.notificationMessage = 'Você só pode selecionar até 5 cartas!';
       }
     } else {
       this.selectedCards.splice(repeatedIndex, 1);
-      this.formatedCardsList[index].isSelected = false;
-      this.cardsList[index].isSelected = false;
+      this.formatedCardsPagedList[selectedPagedIndex].isSelected = false;
+      this.cardsList[selectedIndex].isSelected = false;
     }
+
+    this.handleUpdatePagination(this.currentPage);
   }
 
   public rerollCards(): void {
@@ -175,7 +187,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   }
 
   public handleUpdatePagination(pageChanged: number): void {
-    console.log(this.formatedCardsPagedList);
+    this.currentPage = pageChanged;
     this.formatedCardsPagedList = this.formatedCardsList.filter(
       ({ page }) => page === pageChanged
     );

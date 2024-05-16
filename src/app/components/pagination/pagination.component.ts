@@ -14,7 +14,7 @@ import {
 export class PaginationComponent implements OnChanges {
   constructor() {}
   currentPage: number = 1;
-  @Input() itemsPerPage: number = 6;
+  @Input() itemsPerPage: number = 0;
   @Input() totalItems: number = 0;
   @Output() pageChanges: EventEmitter<number> = new EventEmitter<number>();
 
