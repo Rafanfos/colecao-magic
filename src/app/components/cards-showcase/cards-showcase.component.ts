@@ -4,9 +4,8 @@ import {
   ICardsOriginal,
   ICardsSet,
 } from '../../interfaces/cards.model';
-
 import { Subject, takeUntil } from 'rxjs';
-import { BoosterService } from 'src/app/services/boster.service';
+import { BoosterService } from 'src/app/services/booster-service/boster.service';
 
 @Component({
   selector: 'app-cards-showcase',
@@ -22,6 +21,12 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   private lastBoosterId: string = '';
   public loading = true;
   public selectedCards: ICardsFormated[] = [];
+  public showNotification = false;
+  public notificationMessage = '';
+
+  closeNotification(): void {
+    this.showNotification = false;
+  }
 
   ngOnInit(): void {
     const storedValue = localStorage.getItem('lastBoosterId');
@@ -69,7 +74,8 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
             this.verifyDeckCondition();
           },
           error: () => {
-            console.log('Erro ao abrir booster!');
+            this.showNotification = true;
+            this.notificationMessage = 'Erro ao abrir booster!';
           },
         });
     } else {
@@ -87,6 +93,7 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
 
   private formatCards(): void {
     this.cardsList = this.cardsList.slice(0, 30);
+    this.unselectAllCards();
     this.formatManaCost();
     this.formatColorIdentity();
     this.loading = false;
@@ -147,7 +154,8 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
         this.cardsList[index].isSelected = true;
         this.selectedCards.push(this.formatedCardsList[index]);
       } else {
-        console.log('Você já selecionou o máximo de 5 cartas.');
+        this.showNotification = true;
+        this.notificationMessage = 'Você só pode selecionar até 5 cartas!';
       }
     } else {
       this.selectedCards.splice(repeatedIndex, 1);

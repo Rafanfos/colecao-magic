@@ -44,3 +44,9 @@
   *ngIf="!loading && cardsList.length === 0"
   [currentComponent]="'cartas'"
 ></app-error-screen>
+
+<app-notification
+  *ngIf="showNotification"
+  [message]="notificationMessage"
+  (closeNotification)="closeNotification()"
+></app-notification>
