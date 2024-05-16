@@ -80,7 +80,6 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
           this.openCardsShowCase();
         },
         error: (error) => {
-          console.log('cadê o erro');
           this.showNotification = true;
           this.notificationMessage = 'Erro ao abrir boosters!';
         },
@@ -89,6 +88,10 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
 
   private openCardsShowCase(): void {
     this.router.navigate(['/cards-showcase']);
+  }
+
+  public closeNotification(): void {
+    this.showNotification = false;
   }
 
   public handleUpdatePagination(pageChanged: number): void {

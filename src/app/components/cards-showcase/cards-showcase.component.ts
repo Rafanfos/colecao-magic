@@ -27,10 +27,6 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
   private currentPage = 0;
   public itemsPerPage = 4;
 
-  closeNotification(): void {
-    this.showNotification = false;
-  }
-
   ngOnInit(): void {
     const storedValue = localStorage.getItem('lastBoosterId');
     if (storedValue) {
@@ -84,6 +80,10 @@ export class CardsShowcaseComponent implements OnInit, OnDestroy {
     } else {
       this.loading = false;
     }
+  }
+
+  public closeNotification(): void {
+    this.showNotification = false;
   }
 
   private verifyDeckCondition(): void {
