@@ -1,0 +1,26 @@
+<div class="pagination-container" ngif="pages.length > 0">
+  <button
+    class="pagination-buttons"
+    *ngIf="currentPage !== 1"
+    (click)="prevPage()"
+  >
+    Anterior
+  </button>
+
+  <button
+    class="page-number"
+    *ngFor="let page of pages"
+    (click)="goToPage(page)"
+    [class.active]="currentPage === page"
+  >
+    {{ page }}
+  </button>
+
+  <button
+    class="pagination-buttons"
+    *ngIf="currentPage !== totalPages"
+    (click)="nextPage()"
+  >
+    Próxima
+  </button>
+</div>

@@ -1,16 +1,23 @@
 <div *ngIf="boostersList.length > 0" class="booster-showcase-container">
   <p>Selecione o booster que deseja abrir</p>
-  <ul>
-    <li *ngFor="let booster of boostersList">
-      <div class="booster-content" (click)="openBoosters(booster.code)">
-        <h3>{{ booster.name }}</h3>
-        <span>{{ booster.block }}</span>
-        <div class="date-container">
-          <span>{{ booster.releaseDate }}</span>
+  <div class="content-block">
+    <ul>
+      <li *ngFor="let booster of boostersList">
+        <div class="booster-content" (click)="openBoosters(booster.code)">
+          <h3>{{ booster.name }}</h3>
+          <span>{{ booster.block }}</span>
+          <div class="date-container">
+            <span>{{ booster.releaseDate }}</span>
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
+      </li>
+    </ul>
+    <app-pagination
+      [itemsPerPage]="itemsPerPage"
+      [totalItems]="boostersList.length"
+      (pageChanges)="handleUpdatePagination($event)"
+    ></app-pagination>
+  </div>
   <button (click)="backToBoosterSearch()">Voltar</button>
 </div>
 
@@ -18,3 +25,9 @@
   *ngIf="boostersList.length === 0"
   [currentComponent]="'boosters'"
 ></app-error-screen>
+
+<app-notification
+  *ngIf="showNotification"
+  [message]="notificationMessage"
+  (closeNotification)="closeNotification()"
+></app-notification>

@@ -2,40 +2,52 @@
 
 <div *ngIf="!loading && cardsList.length > 0" class="cards-showcase-container">
   <p>Este é seu deck de 30 cartas</p>
-  <ul>
-    <li
-      *ngFor="let card of formatedCardsList; let i = index"
-      [ngClass]="{ 'selected-card': card.isSelected }"
-      (click)="selectCard(card.id, i)"
-    >
-      <div class="card-content">
-        <figure class="card-image">
-          <img [src]="card.imageUrl" />
-        </figure>
-        <div class="card-text">
-          <h3>{{ card.name }}</h3>
-          <div class="mana-cost">
-            <span>{{ card.manaCost.qtd }}</span>
+
+  <div class="content-block">
+    <p>
+      Você pode rerrolar até 5 cartas as selecionando e clicando em rerrolar
+    </p>
+    <ul>
+      <li
+        *ngFor="let card of formatedCardsPagedList; let i = index"
+        [ngClass]="{ 'selected-card': card.isSelected }"
+        (click)="selectCard(card.id, card)"
+      >
+        <div class="card-content">
+          <figure class="card-image">
+            <img [src]="card.imageUrl" />
+          </figure>
+          <div class="card-text">
+            <h3>{{ card.name }}</h3>
+            <div class="mana-cost">
+              <span>{{ card.manaCost.qtd }}</span>
+              <img
+                class="img-icon"
+                *ngFor="let symbol of card.manaCost.mana"
+                [src]="symbol | manaSymbolToIcon"
+                [alt]="symbol"
+              />
+            </div>
+            <p [innerHTML]="card.text | manaSymbolToIconInText"></p>
+          </div>
+          <figure class="card-id-color">
             <img
               class="img-icon"
-              *ngFor="let symbol of card.manaCost.mana"
-              [src]="symbol | manaSymbolToIcon"
-              [alt]="symbol"
+              *ngFor="let color of card.colorIdentity"
+              [src]="color | manaSymbolToIcon"
+              [alt]="color"
             />
-          </div>
-          <p [innerHTML]="card.text | manaSymbolToIconInText"></p>
+          </figure>
         </div>
-        <figure class="card-id-color">
-          <img
-            class="img-icon"
-            *ngFor="let color of card.colorIdentity"
-            [src]="color | manaSymbolToIcon"
-            [alt]="color"
-          />
-        </figure>
-      </div>
-    </li>
-  </ul>
+      </li>
+    </ul>
+    <app-pagination
+      *ngIf="!loading"
+      [itemsPerPage]="itemsPerPage"
+      [totalItems]="formatedCardsList.length"
+      (pageChanges)="handleUpdatePagination($event)"
+    ></app-pagination>
+  </div>
 
   <button (click)="rerollCards()">Rerrolar</button>
 </div>

@@ -14,6 +14,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
 import { ErrorScreenComponent } from './components/error-screen/error-screen.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationComponent } from './components/notification/notification.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NotificationComponent } from './components/notification/notification.co
     LoadingScreenComponent,
     ErrorScreenComponent,
     NotificationComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

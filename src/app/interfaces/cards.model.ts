@@ -22,7 +22,7 @@ interface ICardsFormated extends IBaseCards {
     mana: string[];
   };
 
-  isSelected: boolean;
+  page: number;
 }
 
 export { ICardsSet, ICardsOriginal, ICardsFormated };

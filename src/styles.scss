@@ -92,6 +92,11 @@ select:focus {
   transition: 500ms;
 }
 
+.img-icon {
+  width: 10px;
+  padding: 1px;
+}
+
 @keyframes appear {
   0% {
     opacity: 0;
@@ -99,9 +104,4 @@ select:focus {
   100% {
     opacity: 1;
   }
-}
-
-.img-icon {
-  width: 10px;
-  padding: 1px;
 }

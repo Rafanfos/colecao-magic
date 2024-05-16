@@ -1,0 +1,36 @@
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  animation: appear 2s ease-in-out;
+
+  .page-number {
+    border-radius: 50% !important;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .active {
+    border-color: var(--border-hover) !important;
+    color: var(--border-hover) !important;
+    transition: 500ms;
+  }
+
+  .pagination-buttons {
+    font-size: 8px;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
