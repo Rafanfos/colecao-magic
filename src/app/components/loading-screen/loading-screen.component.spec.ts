@@ -8,16 +8,15 @@ describe('LoadingScreenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoadingScreenComponent]
-    })
-    .compileComponents();
-    
+      declarations: [LoadingScreenComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(LoadingScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Deveria criar tela de carregamento', () => {
     expect(component).toBeTruthy();
   });
 });

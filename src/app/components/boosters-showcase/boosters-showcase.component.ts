@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BoosterService } from '../../services/boster.service';
+import { BoosterService } from '../../services/booster-service/boster.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { IBoosters } from '../../interfaces/boosters.model';
@@ -17,6 +17,8 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
 
   public boostersList: IBoosters[] = [];
   private readonly destroy$ = new Subject();
+  public showNotification = false;
+  public notificationMessage = '';
 
   ngOnInit(): void {
     this.getBoostersList();
@@ -76,7 +78,8 @@ export class BoostersShowcaseComponent implements OnInit, OnDestroy {
           this.openCardsShowCase();
         },
         error: () => {
-          console.log('Erro ao abrir booster!');
+          this.showNotification = true;
+          this.notificationMessage = 'Erro ao abrir boosters!';
         },
       });
   }

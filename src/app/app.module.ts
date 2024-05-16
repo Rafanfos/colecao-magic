@@ -12,6 +12,8 @@ import { ManaSymbolToIconPipe } from './pipes/mana-symbol-to-icon/mana-symbol-to
 import { ManaSymbolToIconInTextPipe } from './pipes/mana-symbol-to-icon-to-text/mana-symbol-to-icon-in-text.pipe';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { ErrorScreenComponent } from './components/error-screen/error-screen.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ErrorScreenComponent } from './components/error-screen/error-screen.com
     ManaSymbolToIconInTextPipe,
     LoadingScreenComponent,
     ErrorScreenComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { ErrorScreenComponent } from './components/error-screen/error-screen.com
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

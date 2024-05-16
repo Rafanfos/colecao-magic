@@ -15,7 +15,7 @@ describe('BoosterSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Deve criar buscador de boosters', () => {
+  it('Deveria criar buscador de boosters', () => {
     expect(component).toBeTruthy();
   });
 });

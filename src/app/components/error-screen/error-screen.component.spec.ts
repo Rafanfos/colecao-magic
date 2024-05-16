@@ -8,16 +8,15 @@ describe('ErrorScreenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ErrorScreenComponent]
-    })
-    .compileComponents();
-    
+      declarations: [ErrorScreenComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ErrorScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Deveria criar tela de erro', () => {
     expect(component).toBeTruthy();
   });
 });
