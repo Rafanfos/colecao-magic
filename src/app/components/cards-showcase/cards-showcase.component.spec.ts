@@ -8,16 +8,15 @@ describe('CardsShowcaseComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CardsShowcaseComponent]
-    })
-    .compileComponents();
-    
+      declarations: [CardsShowcaseComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CardsShowcaseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Deveria criar mosrauário de cartas', () => {
     expect(component).toBeTruthy();
   });
 });

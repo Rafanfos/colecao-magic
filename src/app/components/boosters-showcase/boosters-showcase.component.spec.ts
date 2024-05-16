@@ -8,16 +8,15 @@ describe('BoostersShowcaseComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BoostersShowcaseComponent]
-    })
-    .compileComponents();
-    
+      declarations: [BoostersShowcaseComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BoostersShowcaseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Deveria criar um mostruário de boosters', () => {
     expect(component).toBeTruthy();
   });
 });
